@@ -67,3 +67,7 @@ Endpoint: POST http://localhost:8080/api/rezervari
   "numarLocuriRezervate": 2
 }
 
+
+## License
+
+Pentru detalii despre licență, consultați fișierul LICENSE din acest director.
