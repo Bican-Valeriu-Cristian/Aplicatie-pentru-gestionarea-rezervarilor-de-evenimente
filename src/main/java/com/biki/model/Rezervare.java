@@ -1,38 +1,60 @@
 package com.biki.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
 public class Rezervare {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long evenimentId;
+    private String numeParticipant;
+    private int locuriRezervate;
 
-    private String numeClient;
+    // Constructor
+    public Rezervare(Long id, Long evenimentId, String numeParticipant, int locuriRezervate) {
+        this.id = id;
+        this.evenimentId = evenimentId;
+        this.numeParticipant = numeParticipant;
+        this.locuriRezervate = locuriRezervate;
+    }
 
-    private String emailClient;
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "eveniment_id")
-    private Eveniment eveniment;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    private int numarLocuriRezervate;
+    public Long getEvenimentId() {
+        return evenimentId;
+    }
+
+    public void setEvenimentId(Long evenimentId) {
+        this.evenimentId = evenimentId;
+    }
+
+    public String getNumeParticipant() {
+        return numeParticipant;
+    }
+
+    public void setNumeParticipant(String numeParticipant) {
+        this.numeParticipant = numeParticipant;
+    }
+
+    public int getLocuriRezervate() {
+        return locuriRezervate;
+    }
+
+    public void setLocuriRezervate(int locuriRezervate) {
+        this.locuriRezervate = locuriRezervate;
+    }
 
     @Override
     public String toString() {
         return "Rezervare{" +
                 "id=" + id +
-                ", numeClient='" + numeClient + '\'' +
-                ", emailClient='" + emailClient + '\'' +
-                ", eveniment=" + eveniment.getNume() +
-                ", numarLocuriRezervate=" + numarLocuriRezervate +
+                ", evenimentId=" + evenimentId +
+                ", numeParticipant='" + numeParticipant + '\'' +
+                ", locuriRezervate=" + locuriRezervate +
                 '}';
     }
 }

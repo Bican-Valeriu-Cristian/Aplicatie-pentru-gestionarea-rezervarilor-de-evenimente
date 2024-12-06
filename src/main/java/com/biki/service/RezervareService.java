@@ -1,44 +1,29 @@
 package com.biki.service;
 
 import com.biki.model.Rezervare;
-import com.biki.repository.RezervareRepository;
-import com.biki.repository.EvenimentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RezervareService {
 
-    @Autowired
-    private RezervareRepository rezervareRepository;
+    private List<Rezervare> rezervari = new ArrayList<>();
 
-    @Autowired
-    private EvenimentRepository evenimentRepository;
-
-    // Obține toate rezervările
+    // Metodă pentru a obține toate rezervările
     public List<Rezervare> getAllRezervari() {
-        return rezervareRepository.findAll();
+        return rezervari;
     }
 
-    // Obține o rezervare după ID
-    public Optional<Rezervare> getRezervareById(Long id) {
-        return rezervareRepository.findById(id);
+    // Metodă pentru a crea o rezervare
+    public Rezervare createRezervare(Rezervare rezervare) {
+        rezervari.add(rezervare);
+        return rezervare;
     }
 
-    // Adaugă o nouă rezervare
-    public Rezervare addRezervare(Rezervare rezervare) {
-        // Verifică dacă evenimentul există
-        if (evenimentRepository.existsById(rezervare.getEveniment().getId())) {
-            return rezervareRepository.save(rezervare);
-        }
-        return null;  // Evenimentul nu există
-    }
-
-    // Șterge o rezervare
+    // Metodă pentru a șterge o rezervare
     public void deleteRezervare(Long id) {
-        rezervareRepository.deleteById(id);
+        rezervari.removeIf(rezervare -> rezervare.getId().equals(id));
     }
 }
